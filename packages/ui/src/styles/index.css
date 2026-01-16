@@ -1,0 +1,30 @@
+/*
+ * Shared UI component styles
+ * Import this in your app's global CSS
+ */
+
+/* Base layer for component styles */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+}
+
+/* Animation utilities */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

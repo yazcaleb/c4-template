@@ -1,0 +1,9 @@
+name = "c4-app"
+compatibility_date = "2024-11-01"
+
+[[headers]]
+for = "/*"
+[headers.values]
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
