@@ -1,0 +1,24 @@
+{
+  "name": "@c4/inngest",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./functions/*": "./src/functions/*.ts"
+  },
+  "scripts": {
+    "dev": "echo 'Inngest: No dev server needed'",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@c4/email": "workspace:*",
+    "@react-email/components": "^0.0.25",
+    "inngest": "^3.27.0",
+    "resend": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}

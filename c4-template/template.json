@@ -1,0 +1,14 @@
+{
+  "name": "c4-template",
+  "version": "1.0.0",
+  "conditionalPaths": {
+    "packages/inngest": "jobs.inngest",
+    "packages/email": "email",
+    "packages/ai": "ai",
+    "infrastructure/cloudflare": "hosting.cloudflare",
+    "infrastructure/cloud-run": "hosting.cloudrun",
+    "apps/web/app/routes/_authed/billing.tsx": "billing.enabled",
+    "apps/web/app/routes/api/webhooks/stripe.ts": "billing.stripe",
+    "apps/web/app/routes/api/ai": "ai"
+  }
+}

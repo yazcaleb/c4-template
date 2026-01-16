@@ -1,0 +1,20 @@
+{
+  "name": "@c4/config",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./typescript": "./typescript/base.json",
+    "./eslint": "./eslint/base.js"
+  },
+  "scripts": {
+    "dev": "echo 'Config: No dev server needed'"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

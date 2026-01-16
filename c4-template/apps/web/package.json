@@ -1,0 +1,44 @@
+{
+  "name": "@c4/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf .next node_modules"
+  },
+  "dependencies": {
+    "@c4/ai": "workspace:*",
+    "@c4/email": "workspace:*",
+    "@c4/inngest": "workspace:*",
+    "@c4/ui": "workspace:*",
+    "@react-email/components": "^0.0.25",
+    "@workos-inc/authkit-nextjs": "^0.16.0",
+    "ai": "^4.0.19",
+    "autumn": "^1.0.2",
+    "convex": "^1.17.0",
+    "inngest": "^3.24.0",
+    "next": "^15.1.0",
+    "posthog-js": "^1.181.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "resend": "^4.0.0",
+    "stripe": "^17.5.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^15.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint-config-next": "^15.1.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}

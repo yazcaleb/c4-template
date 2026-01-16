@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: infrastructure/cloud-run/Dockerfile
+    ports:
+      - "3000:8080"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - c4-network
+
+networks:
+  c4-network:
+    driver: bridge
