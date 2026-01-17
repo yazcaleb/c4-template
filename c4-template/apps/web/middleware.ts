@@ -1,18 +1,16 @@
-import { authkitMiddleware } from "@workos-inc/authkit-nextjs";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// Only initialize WorkOS middleware if API key is configured
-const isWorkOSConfigured = !!process.env.WORKOS_API_KEY;
-
-export default function middleware(request: NextRequest) {
+export default async function middleware(request: NextRequest) {
   // If WorkOS is not configured, allow all requests through
   // Protected routes will handle missing auth in their page components
-  if (!isWorkOSConfigured) {
+  if (!process.env.WORKOS_API_KEY) {
     return NextResponse.next();
   }
 
-  // If WorkOS is configured, use the authkit middleware
+  // Only dynamically import WorkOS when API key is present
+  // This prevents the module from loading and throwing during startup
+  const { authkitMiddleware } = await import("@workos-inc/authkit-nextjs");
   return authkitMiddleware()(request);
 }
 
