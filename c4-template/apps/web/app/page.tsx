@@ -1,153 +1,71 @@
-import { Button } from "@c4/ui/components/button";
 import Link from "next/link";
 
 export default function HomePage() {
-  // Check which services are configured
-  const servicesStatus = {
-    workos: !!process.env.WORKOS_API_KEY,
-    convex: !!process.env.NEXT_PUBLIC_CONVEX_URL,
-    stripe: !!process.env.STRIPE_SECRET_KEY,
-    resend: !!process.env.RESEND_API_KEY,
-    openai: !!process.env.OPENAI_API_KEY,
-    anthropic: !!process.env.ANTHROPIC_API_KEY,
-    inngest: !!process.env.INNGEST_EVENT_KEY,
-    posthog: !!process.env.NEXT_PUBLIC_POSTHOG_KEY,
-  };
-
-  const configuredCount = Object.values(servicesStatus).filter(Boolean).length;
-  const totalServices = Object.keys(servicesStatus).length;
-
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-8 p-8">
-      <div className="text-center space-y-4">
-        <h1 className="text-5xl font-bold tracking-tight">
-          Welcome to <span className="text-primary">C4 Stack</span>
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#0a0a0a] to-[#1a1a2e]">
+      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+        {/* Logo */}
+        <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
+          <span className="text-4xl font-bold bg-gradient-to-br from-violet-400 to-violet-600 bg-clip-text text-transparent">
+            C4
+          </span>
+        </div>
+
+        {/* Headline */}
+        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+          Create <span className="bg-gradient-to-r from-violet-400 to-violet-600 bg-clip-text text-transparent">C4</span> App
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl">
-          The modern full-stack TypeScript framework that makes T3 Stack look like 2022.
-          Build production-ready SaaS in minutes with batteries-included integrations.
+
+        {/* Tagline */}
+        <p className="text-xl text-zinc-400 max-w-2xl text-center">
+          The modern TypeScript stack for production SaaS. Auth, billing, emails, AI, and real-time — all wired up.
         </p>
-      </div>
 
-      {configuredCount === 0 && (
-        <div className="max-w-2xl rounded-lg border border-yellow-500/50 bg-yellow-500/10 p-6">
-          <h2 className="mb-2 text-lg font-semibold">🚀 Quick Start</h2>
-          <p className="mb-4 text-sm text-muted-foreground">
-            Your app is running! No services are configured yet. To enable features:
-          </p>
-          <ol className="space-y-2 text-sm">
-            <li>1. Copy <code className="rounded bg-muted px-1 py-0.5">.env.example</code> to <code className="rounded bg-muted px-1 py-0.5">.env.local</code></li>
-            <li>2. Add your API keys (see README.md for links)</li>
-            <li>3. Restart <code className="rounded bg-muted px-1 py-0.5">pnpm dev</code></li>
-          </ol>
+        {/* Install command */}
+        <div className="flex items-center gap-2 rounded-xl bg-white/5 px-6 py-4 font-mono text-sm text-zinc-300 border border-white/10 backdrop-blur-sm">
+          <span className="text-zinc-500">$</span>
+          <code>npx create-c4-app@latest</code>
         </div>
-      )}
 
-      {configuredCount > 0 && configuredCount < totalServices && (
-        <div className="max-w-2xl rounded-lg border bg-card p-6">
-          <h2 className="mb-2 text-lg font-semibold">
-            ⚙️ Configuration ({configuredCount}/{totalServices} services)
-          </h2>
-          <p className="mb-4 text-sm text-muted-foreground">
-            Some services are configured. Add more API keys to unlock all features.
-          </p>
-        </div>
-      )}
-
-      <div className="flex gap-4">
-        <Button size="lg" asChild>
-          <Link href="/dashboard">
-            {servicesStatus.workos ? "Go to Dashboard" : "Try Dashboard"}
+        {/* CTA Buttons */}
+        <div className="flex gap-4">
+          <Link
+            href="/dashboard"
+            className="rounded-xl bg-violet-600 px-8 py-3 font-semibold text-white transition hover:bg-violet-500"
+          >
+            Get Started
           </Link>
-        </Button>
-        <Button size="lg" variant="outline" asChild>
           <a
             href="https://github.com/yazcaleb/c4-template"
             target="_blank"
             rel="noopener noreferrer"
+            className="rounded-xl bg-white/5 px-8 py-3 font-semibold text-white border border-white/10 transition hover:bg-white/10"
           >
-            View on GitHub
+            GitHub
           </a>
-        </Button>
-      </div>
+        </div>
 
-      <div className="mt-12 w-full max-w-4xl">
-        <h2 className="mb-6 text-center text-2xl font-semibold">What's Included?</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <FeatureCard
-            title="Next.js 15"
-            description="React 19 + App Router"
-            configured={true}
-          />
-          <FeatureCard
-            title="WorkOS"
-            description="Enterprise auth + SSO"
-            configured={servicesStatus.workos}
-          />
-          <FeatureCard
-            title="Convex"
-            description="Real-time database"
-            configured={servicesStatus.convex}
-          />
-          <FeatureCard
-            title="Stripe"
-            description="Billing + subscriptions"
-            configured={servicesStatus.stripe}
-          />
-          <FeatureCard
-            title="Resend"
-            description="Transactional emails"
-            configured={servicesStatus.resend}
-          />
-          <FeatureCard
-            title="AI SDK"
-            description="Streaming AI chat"
-            configured={servicesStatus.openai || servicesStatus.anthropic}
-          />
-          <FeatureCard
-            title="Inngest"
-            description="Background jobs"
-            configured={servicesStatus.inngest}
-          />
-          <FeatureCard
-            title="PostHog"
-            description="Product analytics"
-            configured={servicesStatus.posthog}
-          />
+        {/* Feature Grid */}
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 mt-8">
+          <FeatureCard name="Next.js 15" description="React 19 & App Router" />
+          <FeatureCard name="WorkOS" description="Enterprise SSO" />
+          <FeatureCard name="Convex" description="Real-time Database" />
+          <FeatureCard name="Stripe" description="Billing & Payments" />
+          <FeatureCard name="Resend" description="Transactional Email" />
+          <FeatureCard name="AI SDK" description="Streaming Chat" />
+          <FeatureCard name="Inngest" description="Background Jobs" />
+          <FeatureCard name="PostHog" description="Analytics" />
         </div>
       </div>
-
-      <div className="mt-8 text-center text-sm text-muted-foreground">
-        <p>
-          Read the{" "}
-          <a href="/README.md" className="underline hover:text-foreground">
-            README
-          </a>
-          {" "}for setup instructions and comparison with T3 Stack
-        </p>
-      </div>
-    </div>
+    </main>
   );
 }
 
-function FeatureCard({
-  title,
-  description,
-  configured,
-}: {
-  title: string;
-  description: string;
-  configured: boolean;
-}) {
+function FeatureCard({ name, description }: { name: string; description: string }) {
   return (
-    <div className={`p-4 rounded-lg border bg-card relative ${configured ? 'border-green-500/50' : 'border-muted'}`}>
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="font-semibold">{title}</h3>
-          <p className="text-sm text-muted-foreground">{description}</p>
-        </div>
-        <div className={`h-2 w-2 rounded-full ${configured ? 'bg-green-500' : 'bg-muted'}`} title={configured ? 'Configured' : 'Not configured'} />
-      </div>
+    <div className="group rounded-xl bg-white/5 p-4 border border-white/10 transition hover:bg-white/10 hover:border-violet-500/50">
+      <h3 className="font-semibold text-white">{name}</h3>
+      <p className="text-sm text-zinc-500">{description}</p>
     </div>
   );
 }
